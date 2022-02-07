@@ -10053,11 +10053,15 @@ function hasFirstPage (link) {
 
 const { context } = __webpack_require__(469);
 
+function hasStatus(serviceStatus) {
+  return serviceStatus !== ': ';
+}
+	
 function buildSlackAttachments({ status, color, tag, projectName, actor, repoUrl }) {
   const { owner, repo } = context.repo;
   repoUrl = repoUrl || `https://github.com/${owner}/${repo}`;
 
-  var statuses = status.split('|').join('\n');
+  var statuses = status.split('|').filter(hasStatus).join('\n');
 
   return [
     {
