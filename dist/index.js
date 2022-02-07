@@ -10054,7 +10054,7 @@ function hasFirstPage (link) {
 const { context } = __webpack_require__(469);
 
 function hasStatus(serviceStatus) {
-  return serviceStatus !== ': ';
+  return serviceStatus.trim() !== ':';
 }
 	
 function buildSlackAttachments({ status, color, tag, projectName, actor, repoUrl }) {
