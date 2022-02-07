@@ -4,12 +4,14 @@ function buildSlackAttachments({ status, color, tag, projectName, actor, repoUrl
   const { owner, repo } = context.repo;
   repoUrl = repoUrl || `https://github.com/${owner}/${repo}`;
 
+  var statuses = status.split('|').join('\n');
+
   return [
     {
       color,
       fields: [
         {
-          title: 'Project',
+          title: 'Deployment',
           value: `<${repoUrl} | ${projectName || repo}>`,
           short: true,
         },
@@ -19,13 +21,13 @@ function buildSlackAttachments({ status, color, tag, projectName, actor, repoUrl
           short: true,
         },
         {
-          title: 'Initiated by',
+          title: 'User',
           value: actor || context.actor,
           short: true,
         },
         {
-          title: 'Status',
-          value: `<https://github.com/${owner}/${repo}/actions/runs/${process.env.GITHUB_RUN_ID} | ${status}>`,
+          title: '<https://github.com/${owner}/${repo}/actions/runs/${process.env.GITHUB_RUN_ID}|Status>',
+          value: `${statuses}`,
           short: true,
         },
       ],
