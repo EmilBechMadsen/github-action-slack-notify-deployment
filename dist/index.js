@@ -10069,19 +10069,14 @@ function buildSlackAttachments({ status, color, tag, projectName, actor, repoUrl
           short: true,
         },
         {
-          title: 'Tag',
-          value: `<${repoUrl}/commit/${tag} | ${tag}>`,
-          short: true,
-        },
-        {
           title: 'User',
           value: actor || context.actor,
           short: true,
         },
         {
-          title: '<https://github.com/${owner}/${repo}/actions/runs/${process.env.GITHUB_RUN_ID}|Status>',
+          title: 'Progress',
           value: `${statuses}`,
-          short: true,
+          short: false,
         },
       ],
       footer_icon: 'https://github.githubassets.com/favicon.ico',
